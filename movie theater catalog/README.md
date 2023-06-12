@@ -1,0 +1,2 @@
+- Using "class" to create an interative catalog of a fictional Movie Theater.
+- STATUS: **not** finished
