@@ -6,12 +6,12 @@ class Filme:
     genero = "desconhecida"
     duracao = -1
     ano = -1
-    codico = -1
+    codigo = -1
 
 def imprime_filme(lista_filmes,indice):
     print(f"Título: {lista_filmes[indice].titulo}")
     print(f"Gênero: {lista_filmes[indice].genero}")
-    print(f"Duração: {lista_filmes[indice].duracao}")
+    print(f"Duração: {lista_filmes[indice].duracao} min")
     print(f"Ano de lançamento: {lista_filmes[indice].ano}")
     print(f"Código: {lista_filmes[indice].codigo}")
 
@@ -25,12 +25,17 @@ def buscar_filme(lista_filmes,codigo):
     return -1
 
 def menu():
-    print("Inserir filme....[1]")
-    print("Listar filmes....[2]")
-    print("Procurar filme...[3]")
-    print("Remover filme....[4]")
-    print("Sair.............[0]")
-    opcao = input("----------------> ")
+    print("Filmes")
+    print("      Inserir filme....[1]")
+    print("      Listar filmes....[2]")
+    print("      Procurar filme...[3]")
+    print("      Remover filme....[4]")
+    print("      Editar filme.....[5]")
+    print("Salas")
+    print("      Inserir Sala.....[6]")
+    print("      Listar Salas.....[7]")
+    print("Sair...................[0]")
+    opcao = input("----------------------> ")
     print()
     return opcao
 
@@ -46,6 +51,14 @@ def menu_editar():
     opcao = input("-------------------->")
     return opcao
 
+def codigo_existente(lista_filmes,code):
+    for elem in lista_filmes:
+        if code == elem.codigo and elem.deletado == 0:
+            print("Código inválido!!!")
+            print()
+            return True
+    return False      
+
 def Inserindo_filme(lista_filmes):
     filme = Filme()
     filme.deletado = 0
@@ -55,15 +68,10 @@ def Inserindo_filme(lista_filmes):
     filme.ano = int(input("Digite o ano de lançamento do filme: "))
     filme.codigo = int(input("Digite o código do filme: "))
     achou = True
-    while achou == True:
-        achou = False
-        for elem in lista_filmes:
-            if filme.codigo == elem.codigo and elem.deletado == 0:
-                achou = True
-                print("Código inválido!!!")
-                print()
-                filme.codigo = int(input("Digite outro código para o Filme: "))
-                break
+    while achou:
+        achou = codigo_existente(lista_filmes,filme.codigo)
+        if achou:
+            filme.codigo = int(input("Digite outro código para o Filme: "))
     lista_filmes.append(filme)
     print("Filme adicionado com sucesso!")
 
@@ -145,14 +153,63 @@ def editar_filme(lista_filmes):
             print("Alterando título do filme:")
             print()
             return editar_titulo_filme(lista_filmes,indice)
+        elif opcao == '2':
+            print("Alterando gênero do filme:")
+            print()
+            return editar_genero_filme(lista_filmes,indice)
+        elif opcao == '3':
+            print("Alterando duração do filme:")
+            print()
+            return editar_duracao_filme(lista_filmes,indice)
+        elif opcao == '4':
+            print("Alterando Ano de Lançamento do filme:")
+            print()
+            return editar_ano_filme(lista_filmes,indice)
+        elif opcao == '5':
+            print("Altrerando Código do filme:")
+            print()
+            return editar_codigo_filme(lista_filmes,indice)
+        elif opcao == '0':
+            print("Voltando...")
+            return lista_filmes
         print("Opção não reconhecida!")
     return lista_filmes
     
-
 def editar_titulo_filme(lista_filmes,indice):
     print(f"Título atual: {lista_filmes[indice].titulo}")
     print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
     lista_filmes[indice].titulo = input("Título novo: ")
+    return lista_filmes
+
+def editar_genero_filme(lista_filmes,indice):
+    print(f"Gênero atual: {lista_filmes[indice].genero}")
+    print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    lista_filmes[indice].genero = input("Gênero novo: ")
+    return lista_filmes
+
+def editar_duracao_filme(lista_filmes,indice):
+    print(f"Duração atual: {lista_filmes[indice].genero}")
+    print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    lista_filmes[indice].duracao = int(input("Duração nova: "))
+    return lista_filmes
+
+def editar_ano_filme(lista_filmes,indice):
+    print(f"Ano de Lançamento atual: {lista_filmes[indice].ano}")
+    print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    lista_filmes[indice].ano = int(input("Ano de Lançamento novo: "))
+    return lista_filmes
+
+def editar_codigo_filme(lista_filmes,indice):
+    print(f"Código atual: {lista_filmes[indice].codigo}")
+    print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+    code = int(input("Código novo: "))
+    achou = True
+    while achou:
+        achou = codigo_existente(lista_filmes,code)
+        if achou:
+            code = int(input("Digite outro código para o Filme: "))
+    lista_filmes[indice].codigo = code
+    print("Código mudado com sucesso!!")
     return lista_filmes
 
 def main():
