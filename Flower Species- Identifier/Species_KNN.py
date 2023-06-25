@@ -34,14 +34,14 @@ def position_biggest_number(arr):
     return position
 
 
-def calculating_distance(flower,list,k):
+def calculating_distance(Unkown_flower,list,k):
     # Calculate the closest species for a given unknown flower
     closest_species = []
     species = []
-    sepal_l1 = flower.sepal_length
-    sepal_w1 = flower.sepal_width
-    petal_l1 = flower.petal_length
-    petal_w1 = flower.petal_width
+    sepal_l1 = Unkown_flower.sepal_length
+    sepal_w1 = Unkown_flower.sepal_width
+    petal_l1 = Unkown_flower.petal_length
+    petal_w1 = Unkown_flower.petal_width
     distance = 0
     for elem in list:
         sepal_l2 = elem.sepal_length
@@ -89,10 +89,10 @@ def main():
     file_name = input("Type the document name:")
     Unknown_species = Open_file(file_name)
     i = 0
-    for flower in Unknown_species:
+    for Unkown_flower in Unknown_species:
         i += 1
-        species = calculating_distance(flower,flowers,k)
-        flower.name = highest_frequency(species)
-        print(f"flower {i} : {flower.name}")
+        species = calculating_distance(Unkown_flower,flowers,k)
+        Unkown_flower.name = highest_frequency(species)
+        print(f"flower {i} : {Unkown_flower.name}")
 
 main()
