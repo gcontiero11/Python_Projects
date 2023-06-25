@@ -20,7 +20,7 @@
 
   This function receives an unknown flower, a list of known flowers, and a value k as parameters. It calculates the Euclidean distance between the unknown flower and each known flower in the list. The k closest species are stored in a list. If the species list is not full yet (less than k), the current species is added to the list. Otherwise, if the current distance is smaller than the largest distance in the list, the corresponding species is replaced by the current value, keeping the list updated.
 
-- **def bigger_frequency(arr) :** 
+- **def highest_frequency(arr) :** 
 
   This function receives a list of species as a parameter and counts the frequency of each species in the list. Then it determines which species has the highest frequency and returns its name.
 
