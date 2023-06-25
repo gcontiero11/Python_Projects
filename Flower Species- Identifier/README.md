@@ -3,7 +3,7 @@
 - When placing a new flower with unknown species in iris.data_2.csv, using the KNN Algorithm, the program calculates the "k" flower species closest to the unkown flower and deduces a specie for it.
 - The distance is calculated with the euclidian distance: d = ((a1-a2)**2 + (b1-b2)**2 + (c1-c2)**2 + (d1 - d2) ** 2 ) ** (1/2)
 
-# ChatGPT's analysis
+# Summary
 - **Class Species :**
 
   Here a class called "Species" is defined with attributes for the species name, sepal length, sepal width, petal length, and petal width.
